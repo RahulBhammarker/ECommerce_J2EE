@@ -30,14 +30,19 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
        </form>
+       
       </div><!-- end alert -->
       <br>
       <a href="CustomerHome?" type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-shopping-cart"></span> Customer Page</a>
      </div>
+     
     </div><!-- end features -->
+    
    </div><!-- end container -->
+   
    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
    <script src="js/bootstrap.js" type="text/javascript"></script>
    <script src="js/script.js" type="text/javascript"></script>  
+   
  </body><!-- body end -->
 </html><!-- html end -->
