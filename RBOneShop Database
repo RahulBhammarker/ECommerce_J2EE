@@ -1,0 +1,210 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.0.13-rc-nt
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema rboneshop
+--
+
+CREATE DATABASE IF NOT EXISTS rboneshop;
+USE rboneshop;
+
+--
+-- Definition of table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `adminid` int(10) unsigned NOT NULL auto_increment,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY  (`adminid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`adminid`,`username`,`password`) VALUES 
+ (1,'admin','paSSword1?');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
+
+--
+-- Definition of table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE `customers` (
+  `customerid` int(10) unsigned NOT NULL auto_increment,
+  `cusername` varchar(45) NOT NULL,
+  `cpassword` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `mobile` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY  (`customerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` (`customerid`,`cusername`,`cpassword`,`name`,`address`,`mobile`,`email`) VALUES 
+ (1,'rahul','12345','Rahul bhammarker','RB II 311/B','8109920087','bhammarkerrahul@gmail.com'),
+ (2,'umang','12345','Umang bhammarker','RB II 311/B New Yard','+918109920087','ubhammarker@gmail.com');
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+
+
+--
+-- Definition of table `jcategory`
+--
+
+DROP TABLE IF EXISTS `jcategory`;
+CREATE TABLE `jcategory` (
+  `jcatid` int(10) unsigned NOT NULL auto_increment,
+  `jcatname` varchar(45) NOT NULL,
+  `jcatdetails` varchar(45) NOT NULL,
+  PRIMARY KEY  (`jcatid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jcategory`
+--
+
+/*!40000 ALTER TABLE `jcategory` DISABLE KEYS */;
+INSERT INTO `jcategory` (`jcatid`,`jcatname`,`jcatdetails`) VALUES 
+ (1,'Mobiles','Mobile phones and accessories.'),
+ (2,'Footware','All mens footware');
+/*!40000 ALTER TABLE `jcategory` ENABLE KEYS */;
+
+
+--
+-- Definition of table `orderdetails`
+--
+
+DROP TABLE IF EXISTS `orderdetails`;
+CREATE TABLE `orderdetails` (
+  `odid` int(10) unsigned NOT NULL auto_increment,
+  `oid` int(10) unsigned NOT NULL,
+  `productid` int(10) unsigned NOT NULL,
+  `units` int(10) unsigned NOT NULL,
+  `price` float NOT NULL,
+  `dicoffered` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`odid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+/*!40000 ALTER TABLE `orderdetails` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orderdetails` ENABLE KEYS */;
+
+
+--
+-- Definition of table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `orderid` int(10) unsigned NOT NULL auto_increment,
+  `orderdatetime` datetime NOT NULL,
+  `customerid` int(10) unsigned NOT NULL,
+  `oamount` float NOT NULL,
+  `paymentdetails` varchar(45) NOT NULL,
+  PRIMARY KEY  (`orderid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `orders`
+--
+
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+
+--
+-- Definition of table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `productid` int(10) unsigned NOT NULL auto_increment,
+  `categoryid` int(10) unsigned NOT NULL,
+  `price` double NOT NULL,
+  `make` varchar(45) NOT NULL,
+  `remarks` text NOT NULL,
+  `photo` varchar(56) NOT NULL,
+  `supplierid` int(10) unsigned NOT NULL,
+  `modelno` varchar(45) NOT NULL,
+  `stockinhand` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`productid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `product`
+--
+
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`productid`,`categoryid`,`price`,`make`,`remarks`,`photo`,`supplierid`,`modelno`,`stockinhand`) VALUES 
+ (1,1,23000,'metal body','Quad core processor , 16MP Camera','motox1.jpeg',1,'MOTO X',4),
+ (2,1,23000,'','2.3 ghz processro, 8 MP camera','nexus 5.jpg',1,'Nexus 5',2),
+ (5,1,67000,'Metal','5.5-inch Touchscreen, 8 MP Primary Camera','apple-iphone-6-plus-1.jpeg',1,'Iphone 6 plus',1),
+ (6,1,41000,'','8 MP iSight Camera ,iOS 7','apple-iphone-5s.jpeg',1,'Iphone 5S',2),
+ (7,1,35000,'','2.2 GHz Quad Core Processor, 20 MP Primary Camera, Windows 8.1 OS','nokia-lumia-930-1.jpeg',1,'Nokia Lumia 930',2),
+ (8,1,57000,'Metal','5.7-inch Touchscreen, 16 MP Primary Camera, 3.7 MP Secondary Camera, Android v4.4 OS','samsung-note-4-1.jpeg',1,'Samsung Note-4',5),
+ (9,1,18000,'','0.3 MP Secondary Camera, Android v4.1 OS ,13 MP Primary Camera, 4.6-inch TFT Touchscreen','sony-xperia-zr-1.jpeg',1,'Sony Xperia ZR',7);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+
+
+--
+-- Definition of table `supplier`
+--
+
+DROP TABLE IF EXISTS `supplier`;
+CREATE TABLE `supplier` (
+  `suppid` int(10) unsigned NOT NULL auto_increment,
+  `suppcompany` varchar(45) NOT NULL,
+  `contactperson` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `mobile` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `webaddress` varchar(45) NOT NULL,
+  PRIMARY KEY  (`suppid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` (`suppid`,`suppcompany`,`contactperson`,`address`,`phone`,`mobile`,`email`,`webaddress`) VALUES 
+ (1,'RBOneShop','Rahul bhammarker','RB II 311/B New Yard','8109920087','8109928809','bhammarkerrahul@gmail.com','http://rboneshop.com');
+/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
